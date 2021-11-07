@@ -42,6 +42,10 @@ function BuySellScreen() {
   const {colors} = useTheme()
   const [receipt, setReceipt] = useState("")
   const [transactionCount, setTransactionCount] = useState(0)
+
+  useEffect(() => {
+
+  }, [])
   
 return (
   <View style={{alignItems:'center',
@@ -144,7 +148,7 @@ return (
   <Text>{"\n"}</Text>
   <Text style={{color: colors.text}}>{receipt}</Text>
   <Text>{"\n"}</Text>
-  <Text style={{textAlign:'center'}}>You have {showData('bitcoin')}</Text>
+  <Text style={{textAlign:'center'}}>You have {showData(crypto)}</Text>
 </View>
 );  
 }
