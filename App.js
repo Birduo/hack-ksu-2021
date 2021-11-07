@@ -44,7 +44,7 @@ function BuySellScreen() {
   const [transactionCount, setTransactionCount] = useState(0)
 
   useEffect(() => {
-
+    
   }, [])
   
 return (
