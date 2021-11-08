@@ -38,10 +38,11 @@ console.log(getCurrentCoin())
 function BuySellScreen() {
   const [crypto, setCrypto] = useState("Bitcoin")
   const [text, setText] = useState('');
-  const [isChanged, setIsChanged] = useState(false)
+  const [isChanged, setIsChanged] = useState(false) 
   const {colors} = useTheme()
   const [receipt, setReceipt] = useState("")
   const [transactionCount, setTransactionCount] = useState(0)
+  const [name, setName] = useState('')
 
   useEffect(() => {
     
@@ -164,46 +165,44 @@ function SettingsScreen() {
 
   }, [])
 
-  if (true) {
-    return (
-      <View style={{
-        color: colors.text,
-        backgroundColor: colors.background,
-        textAlign:'center', alignItems:'center'
-      }}>
-        <Text style={{fontSize:50,color: colors.text ,textAlign:'center', alignItems:'center'}}>
-          Sign In
-        </Text>
-        <TextInput style={{backgroundColor: colors.text,height:50,width:400,color: colors.background, textAlign:'center',
-          alignContent:'center',placeholderTextColor: colors.background}}
-          placeholder="Enter a user ID to load!"
-          onChangeText={text => {
-            setText(text)
-          }}
-        />
+  return (
+    <View style={{
+      color: colors.text,
+      backgroundColor: colors.background,
+      textAlign:'center', alignItems:'center'
+    }}>
+      <Text style={{fontSize:50,color: colors.text ,textAlign:'center', alignItems:'center'}}>
+        Sign In
+      </Text>
+      <TextInput style={{backgroundColor: colors.text,height:50,width:400,color: colors.background, textAlign:'center',
+        alignContent:'center',placeholderTextColor: colors.background}}
+        placeholder="Enter a user ID to load!"
+        onChangeText={text => {
+          setText(text)
+        }}
+      />
 
-        <Text>{"\n"}</Text>
-        <Button 
-          onPress={() => {
-            if (text != "") {
-              dataUser.id = text
-              getUser().then(() => {
-                setUpdateCount(updateCount + 1)
-              })
-              setSubmitted(true)
-            }
-          }}
-          title="Submit"
-          color="#00ff00"
-          backgroundColor='#00ff00'
-          accessibilityLabel="Buy"
-        />
-        <Text style={{fontSize:30,color: colors.text ,textAlign:'center', alignItems:'center'}}>
-          {(submitted) ? `Successfully connected to: ${text}!\n\n\n$${dataUser.balance}` : ""}
-        </Text>
-      </View>
-    )
-  }
+      <Text>{"\n"}</Text>
+      <Button 
+        onPress={() => {
+          if (text != "") {
+            dataUser.id = text
+            getUser().then(() => {
+              setUpdateCount(updateCount + 1)
+            })
+            setSubmitted(true)
+          }
+        }}
+        title="Submit"
+        color="#00ff00"
+        backgroundColor='#00ff00'
+        accessibilityLabel="Buy"
+      />
+      <Text style={{fontSize:30,color: colors.text ,textAlign:'center', alignItems:'center'}}>
+        {(submitted) ? `Successfully connected to: ${text}!\n\n\n$${dataUser.balance}` : ""}
+      </Text>
+    </View>
+  )
 }
 
 const Tab = createBottomTabNavigator();
@@ -235,7 +234,6 @@ export default function App() {
     AppState.addEventListener('change', handleAppStateChange);
 
     return () => {
-      AppState.removeEventListener('change', handleAppStateChange);
     };
   }, [])
 
@@ -248,14 +246,3 @@ export default function App() {
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  tinyImg: {
-    width: 50,
-    height: 50,
-  },
-  fixToText: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  }
-})
